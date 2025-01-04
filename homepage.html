@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewAi</title>
+    <link href="homepage.css" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+           
+            <div class="menu">
+                <ul>
+                    <li><a href="loginpage.html">HOME</a></li>
+                    <li><a href="Aboutus.html">ABOUT ME</a></li>
+                    <li><a href="contactme.html">CONTACT</a></li>
+                    
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+            <div class="content">
+                <h1>Step into the future with <span>AI-driven preparation</span></h1>
+                <h2 class="heading2"> Let your success starts here!</h2>
+                <h3>click on about me to know the step by step process on how this project works.
+                      
+                </h3>
+            
+            <button class="btn"><a href="chat (1).html">JOIN US</a></button>
+            </div>
+    </div>
+
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+<script>
+window.onload = function() {
+    const currentUser = localStorage.getItem('currentUser');
+    
+    if (!currentUser) {
+        // If user is not logged in, redirect to login page
+        window.location.href = 'loginpage.html';
+    }
+}
+
+// Function to handle logout
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'loginpage.html';
+}
+
+function handleCredentialResponse(response) {
+    // Handle Google Sign-In response here
+    console.log("Google Sign-In Response:", response);
+    // You can send this response to your backend for verification
+}
+</script>
+
+</body>
+    
+</html>

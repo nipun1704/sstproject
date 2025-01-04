@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href ="answer.css" rel="stylesheet">
+</head>
+<body>
+    <div class="hh">
+        <img src="https://assets.fp.scaler.com/seo/_next/static/media/scaler-dark.cbd1c2af.svg">
+        <button class="end-btn">
+            <a href="{{ url_for('index3') }}">END INTERVIEW</a>
+        </button>
+    </div>
+    <div class="container">
+    <div class="col-1">
+        <h1>Confidence comes from preparation</h1>
+        <h2>Trust your skills and face your AI interview head-on!</h2>
+        <img src="https://i.postimg.cc/DfLGsGHH/AI-hiring.webp">
+    </div>
+        <div class="col-2">
+    
+            <!-- Title and Question Section -->
+            <h1>Answer the Following Questions</h1>
+            <div class="question-style" id="question">Loading question...</div>
+    
+            <!-- Timer Display -->
+            <div class="timer" id="timer">Time: --:--</div>
+    
+            <!-- Controls Section -->
+            <div class="btn-align">
+                <button id="start-btn" class="hover-btn">Start Recording</button>
+                <button id="stop-btn" class="hover-btn">Stop / Next</button>
+            </div>
+    
+            <!-- Status Section -->
+            <div id="status"></div>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const startBtn = document.getElementById('start-btn');
+                const stopBtn = document.getElementById('stop-btn');
+                const statusDiv = document.getElementById('status');
+                const questionDiv = document.getElementById('question');
+                const timerDiv = document.getElementById('timer');
+    
+                let timerInterval;
+    
+                // Fetch Current Question
+                function fetchCurrentQuestion() {
+                    fetch('/current_question')
+                        .then(response => response.json())
+                        .then(data => {
+                            questionDiv.textContent = data.question || "Question not available.";
+                        })
+                        .catch(error => {
+                            questionDiv.textContent = `Error fetching question: ${error}`;
+                        });
+                }
+    
+                // Poll for Transcribed Text
+                function startPolling() {
+                    const pollInterval = setInterval(() => {
+                        fetch('/get_text')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.text) {
+                                    statusDiv.textContent = `You said: "${data.text}"`;
+                                    clearInterval(pollInterval);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                clearInterval(pollInterval);
+                            });
+                    }, 1000);
+                }
+    
+                // Start Countdown Timer
+                function startCountdown(seconds) {
+                    let remainingTime = seconds;
+                    timerDiv.textContent = `Time: 00:${remainingTime < 10 ? '0' : ''}${remainingTime}`;
+    
+                    timerInterval = setInterval(() => {
+                        remainingTime--;
+                        timerDiv.textContent = `Time: 00:${remainingTime < 10 ? '0' : ''}${remainingTime}`;
+    
+                        if (remainingTime <= 0) {
+                            clearInterval(timerInterval);
+                            timerDiv.textContent = 'Time: 00:00';
+                            statusDiv.textContent = 'Time is up! Fetching next question...';
+                            startBtn.disabled = false;
+                            fetchCurrentQuestion();
+                        }
+                    }, 1000);
+                }
+    
+                // Start Recording
+                startBtn.addEventListener('click', function () {
+                    statusDiv.textContent = 'Listening...';
+                    fetch('/start')
+                        .then(response => response.json())
+                        .then(data => {
+                            statusDiv.textContent = data.status || "Started recording.";
+                            startBtn.disabled = true;
+                            stopBtn.disabled = false;
+                            startPolling();
+                        })
+                        .catch(error => {
+                            statusDiv.textContent = `Error: ${error}`;
+                        });
+                });
+    
+                // Stop Recording and Start Countdown
+                stopBtn.addEventListener('click', function () {
+                    fetch('/stop')
+                        .then(response => response.json())
+                        .then(data => {
+                            statusDiv.textContent = data.status || "Recording stopped.";
+                            stopBtn.disabled = true;
+                            startCountdown(20); // Start 60-second countdown
+                        })
+                        .catch(error => {
+                            statusDiv.textContent = `Error: ${error}`;
+                        });
+                });
+    
+                // Load First Question on Page Load
+                fetchCurrentQuestion();
+            });
+        </script>
+        </div>
+
+</body>
+</html>
+    
