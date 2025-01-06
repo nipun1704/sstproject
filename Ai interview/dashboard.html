@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="dashboard.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #ff7200;
+        }
+        .score-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .feedback, .resume-analysis, .job-description {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #e7f3fe;
+            border-left: 6px solid #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <div class="score-card">
+            <h2>Your Score Card</h2>
+            <p>Score: <strong>85/100</strong></p>
+            <p>Feedback: Great job! You showed confidence and clarity in your responses.</p>
+        </div>
+        <div class="feedback">
+            <h2>Interview Feedback</h2>
+            <p>Overall, your performance was impressive. Focus on improving your technical knowledge.</p>
+        </div>
+        <div class="resume-analysis">
+            <h2>Resume Analysis</h2>
+            <p>Your resume is well-structured, but consider adding more quantifiable achievements.</p>
+        </div>
+        <div class="job-description">
+            <h2>Job Description Analysis</h2>
+            <p>The job description aligns well with your skills. Highlight your project experience in future interviews.</p>
+        </div>
+    </div>
+</body>
+</html>

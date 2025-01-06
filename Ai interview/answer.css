@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background and Container Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://i.postimg.cc/rpSn333N/backgrnd-img.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 40px 50px;
+    color: #fff;
+}
+
+.sklassics img {
+    margin-left: 70px;
+    transition: transform 0.3s ease;
+}
+
+.sklassics img:hover {
+    transform: scale(1.05);
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.col-1 {
+    background: rgba(0, 0, 0, 0.8);
+    width: 30%;
+    height: 80vh;
+    border-radius: 20px;
+    padding: 30px;
+    margin-left: 60px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.col-1 h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, #2196F3, #00BCD4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.col-1 img {
+    width: 100%;
+    height: 35vh;
+    border-radius: 15px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.col-1 img:hover {
+    transform: scale(1.03);
+}
+
+.col-1 h2 {
+    font-family: 'Montserrat', sans-serif;
+    padding: 15px 0;
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.col-2 {
+    background: rgba(0, 0, 0, 0.8);
+    width: 60%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 2rem;
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.question-style {
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.timer {
+    font-size: 2.2rem;
+    color: #FF5252;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-shadow: 0 0 10px rgba(255,82,82,0.3);
+}
+
+.hover-btn {
+    text-decoration: none;
+    display: inline-block;
+    background: linear-gradient(45deg, #2196F3, #00BCD4);
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: #fff;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(33,150,243,0.3);
+}
+
+.hover-btn:hover {
+    background: linear-gradient(45deg, #FF5252, #FF8A80);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,82,82,0.4);
+}
+
+.btn-align {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 180px;
+    padding: 0 20px;
+}
+
+#status {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(76,175,80,0.3);
+}
+
+.hover-btn a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.hh {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.end-btn {
+    text-decoration: none;
+    display: inline-block;
+    background: linear-gradient(45deg, #FF5252, #FF8A80);
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255,82,82,0.3);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.end-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,82,82,0.4);
+}
+
+.end-btn a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+}
+
+.hh img {
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.hh img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

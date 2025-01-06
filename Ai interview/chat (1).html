@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Welcome Page</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+   
+    font-family: Arial, sans-serif;
+    color: white;
+    z-index: -2;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.938);
+
+}
+
+video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    width: 90%;
+    height: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    text-align: center;
+}
+
+.welcome-message {
+    font-size: 2.5rem;
+    animation: fadeIn 1s ease-in;
+    margin-top: 220px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+
+.welcome-message-2 {
+    font-size: 2.5rem;
+    animation: fadeIn 1s ease-in;
+    /* margin-bottom: 50px; */
+    text-align: center;
+}
+.welcome-message-3 {
+  font-size: 25px;
+    animation: fadeIn 1s ease-in;
+    padding-bottom: 13px;
+    /* margin-bottom: 10px; */
+    /* text-align: center; */
+    color: #fff;
+    font-family: monospace;
+    font-weight: 400;
+
+}
+.prompt-message {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    animation: fadeIn 1.5s ease-in;
+    display: none; /* Hide error messages */
+}
+
+.name-input {
+    background-color:#fff;
+    color:#000;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.upload-container{
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 25px; */
+  width: 600px;
+  margin-top: 2rem;
+  border-radius: 30px;
+  /*background: linear-gradient(90deg,#d53369 0%,#daae51 100%);*/
+   background-color: #000;
+}
+
+
+ .upload-button {
+    padding: 10px;
+    margin-top: 20px;
+    /* background-color: #45d1db; */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.upload-button-2{
+   padding: 7px 25px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #a1a64c 0%, #57b38b 100%);
+    /* color: white; */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.next-button{
+  padding: 10px 15px;
+    margin-top: 20px;
+    background-color: #18a22a;
+    color: rgb(255, 254, 254);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.upload-button-2:hover{
+  background: linear-gradient(90deg, #4e4747 0%, #101f18 100%);
+  color: white;
+
+}
+
+.next-button:hover, .upload-button:hover {
+    background-color: #4cba64;
+}
+
+.upload-button {
+    display: block;
+    margin: 10px 0;
+}
+
+@media (max-width: 600px) {
+    .welcome-message {
+        font-size: 1.8rem;
+    }
+
+    .prompt-message {
+        font-size: 1.2rem;
+    }
+
+    .name-input {
+        width: 90%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* input  */
+
+.grid {
+    height: 800px;
+    width: 800px;
+    background-image: linear-gradient(to right, #0f0f10 1px, transparent 1px),
+      linear-gradient(to bottom, #0f0f10 1px, transparent 1px);
+    background-size: 1rem 1rem;
+    background-position: center center;
+    position: absolute;
+    z-index: -1;
+    filter: blur(1px);
+  }
+  .white,
+  .border,
+  .darkBorderBg,
+  .glow {
+    max-height: 70px;
+    max-width: 314px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    /* Border Radius */
+    border-radius: 12px;
+    filter: blur(3px);
+  }
+  .input {
+    background-color: #010201;
+    border: none;
+    /* padding:7px; */
+    width: 301px;
+    height: 56px;
+    border-radius: 10px;
+    color: white;
+    padding-inline: 25px;
+    font-size: 18px;
+  }
+  .input-style{
+    background-color: #010201;
+    border: none;
+    /* padding:7px; */
+    width: 80%;
+    height: 56px;
+    border-radius: 10px;
+    color: white;
+    padding-inline: 25px;
+    font-size: 18px;
+  }
+  .input-style-ex{
+    /* background-color: #010201; */
+    border: none;
+    /* padding:7px; */
+    width: 80%;
+    height: 56px;
+    border-radius: 10px;
+    color:#000;
+    padding-inline: 25px;
+    font-size: 18px;
+    outline: none;
+  }
+  .input-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .label-style{
+    padding: 6px;
+    font-size: 25px;
+
+  }
+  #poda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .input::placeholder {
+    color: #c0b9c0;
+  }
+  
+  .input:focus {
+    outline: none;
+  }
+  
+  #main:focus-within > #input-mask {
+    display: none;
+  }
+  
+  #input-mask {
+    pointer-events: none;
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    background: linear-gradient(90deg, transparent, black);
+    top: 18px;
+    left: 70px;
+  }
+  #pink-mask {
+    pointer-events: none;
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    background: #cf30aa;
+    top: 10px;
+    left: 5px;
+    filter: blur(20px);
+    opacity: 0.8;
+    animation:leftright 4s ease-in infinite;
+    transition: all 2s;
+  }
+  #main:hover > #pink-mask {
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+  }
+  
+  .white {
+    max-height: 63px;
+    max-width: 307px;
+    border-radius: 10px;
+    filter: blur(2px);
+  }
+  
+  .white::before {
+    content: "";
+    z-index: -2;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(83deg);
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    filter: brightness(1.4);
+    background-image: conic-gradient(
+      rgba(0, 0, 0, 0) 0%,
+      #a099d8,
+      rgba(0, 0, 0, 0) 8%,
+      rgba(0, 0, 0, 0) 50%,
+      #dfa2da,
+      rgba(0, 0, 0, 0) 58%
+    );
+    animation: rotate 4s linear infinite;
+    transition: all 2s;
+  }
+  .border {
+    max-height: 59px;
+    max-width: 303px;
+    border-radius: 11px;
+    filter: blur(0.5px);
+  }
+  .border::before {
+    content: "";
+    z-index: -2;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(70deg);
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    filter: brightness(1.3);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: conic-gradient(
+      #1c191c,
+      #402fb5 5%,
+      #1c191c 14%,
+      #1c191c 50%,
+      #cf30aa 60%,
+      #1c191c 64%
+    );
+    animation: rotate 4s 0.1s linear infinite;
+    transition: all 2s;
+  }
+  .darkBorderBg {
+    max-height: 65px;
+    max-width: 312px;
+  }
+  .darkBorderBg::before {
+    content: "";
+    z-index: -2;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(82deg);
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: conic-gradient(
+      rgba(0, 0, 0, 0),
+      #18116a,
+      rgba(0, 0, 0, 0) 10%,
+      rgba(0, 0, 0, 0) 50%,
+      #6e1b60,
+      rgba(0, 0, 0, 0) 60%
+    );
+    transition: all 2s;
+  }
+  #poda:hover > .darkBorderBg::before {
+    transform: translate(-50%, -50%) rotate(262deg);
+  }
+  #poda:hover > .glow::before {
+    transform: translate(-50%, -50%) rotate(240deg);
+  }
+  #poda:hover > .white::before {
+    transform: translate(-50%, -50%) rotate(263deg);
+  }
+  #poda:hover > .border::before {
+    transform: translate(-50%, -50%) rotate(250deg);
+  }
+  
+  #poda:hover > .darkBorderBg::before {
+    transform: translate(-50%, -50%) rotate(-98deg);
+  }
+  #poda:hover > .glow::before {
+    transform: translate(-50%, -50%) rotate(-120deg);
+  }
+  #poda:hover > .white::before {
+    transform: translate(-50%, -50%) rotate(-97deg);
+  }
+  #poda:hover > .border::before {
+    transform: translate(-50%, -50%) rotate(-110deg);
+  }
+  
+  #poda:focus-within > .darkBorderBg::before {
+    transform: translate(-50%, -50%) rotate(442deg);
+    transition: all 4s;
+  }
+  #poda:focus-within > .glow::before {
+    transform: translate(-50%, -50%) rotate(420deg);
+    transition: all 4s;
+  }
+  #poda:focus-within > .white::before {
+    transform: translate(-50%, -50%) rotate(443deg);
+    transition: all 4s;
+  }
+  #poda:focus-within > .border::before {
+    transform: translate(-50%, -50%) rotate(430deg);
+    transition: all 4s;
+  }
+  
+  .glow {
+    overflow: hidden;
+    filter: blur(30px);
+    opacity: 0.4;
+    max-height: 130px;
+    max-width: 354px;
+  }
+  .glow::before {
+    content: "";
+    z-index: -2;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(60deg);
+    position: absolute;
+    width: 999px;
+    height: 999px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    /*border color, change middle color*/
+    background-image: conic-gradient(
+      #000,
+      #402fb5 5%,
+      #000 38%,
+      #000 50%,
+      #cf30aa 60%,
+      #000 87%
+    );
+    /* change speed here */
+    animation: rotate 4s 0.3s linear infinite;
+    transition: all 2s;
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: translate(-50%, -50%) rotate(450deg);
+    }
+  }
+  @keyframes leftright {
+    0% {
+      transform: translate(0px, 0px);
+      opacity: 1;
+    }
+  
+    49% {
+      transform: translate(250px, 0px);
+      opacity: 0;
+    }
+    80% {
+      transform: translate(-40px, 0px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translate(0px, 0px);
+      opacity: 1;
+    }
+  }
+input[type="file"]{
+  border-radius: 5px;
+}
+  .custom-file-upload{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  #filter-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    max-height: 40px;
+    max-width: 38px;
+    height: 100%;
+    width: 100%;
+  
+    isolation: isolate;
+    overflow: hidden;
+    /* Border Radius */
+    border-radius: 10px;
+    background: linear-gradient(180deg, #161329, black, #1d1b4b);
+    border: 1px solid transparent;
+  }
+  .filterBorder {
+    height: 42px;
+    width: 40px;
+    position: absolute;
+    overflow: hidden;
+    top: 7px;
+    right: 7px;
+    border-radius: 10px;
+  }
+  
+  .filterBorder::before {
+    content: "";
+  
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    filter: brightness(1.35);
+    background-image: conic-gradient(
+      rgba(0, 0, 0, 0),
+      #3d3a4f,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) 50%,
+      #3d3a4f,
+      rgba(0, 0, 0, 0) 100%
+    );
+    animation: rotate 4s linear infinite;
+  }
+  #main {
+    position: relative;
+  }
+  #search-icon {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+  }
+  
+    </style>
+</head>
+<body>
+  
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="./assets/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="overlay" id="nameOverlay">
+      <h1 class="welcome-message">Welcome to AI Interview</h1>
+         <div id="poda">
+            <div class="glow"></div>
+            <div class="darkBorderBg"></div>
+            <div class="darkBorderBg"></div>
+            <div class="darkBorderBg"></div>
+            <div class="white"></div>
+            <div class="border"></div>
+            <div id="main">
+                <input placeholder="Enter your Name " id="nameInput" type="text" name="text" class="input" />
+                <div id="input-mask"></div>
+                <div id="pink-mask"></div>
+                <div class="filterBorder"></div>
+            </div>
+        </div>
+
+        <button id="nextButton" class="next-button">Next</button>
+    </div>
+    
+
+    <div class="overlay" id="uploadOverlay" style="display: none; margin-bottom: 2rem; margin-top: 2rem;">
+      <h1 class="welcome-message-2">Welcome to AI Interview</h1>
+        <div class="upload-container" style="border:3px solid #fff;">
+            <!--<h2>Please upload your Resume and Job Description</h2>-->
+            <form id="uploadForm" method="post" action="{{ url_for('upload_files') }}" enctype="multipart/form-data"style="display: flex;
+    flex-direction: column;  margin-top:3rem; justify-content: center; align-items:center">
+            <h3 class="welcome-message-3">Please Upload Your Resume and Job Description file's</h3>
+
+                    <!-- //input type="text" id="name" name="name" class="input-style-ex" placeholder="Folder name "><br><br> -->
+                <div class="input-center">
+                  <label for="resume" class="label-style">Resume:</label>
+                  <input type="file" id="resume" name="resume" class="custom-file-upload"><br><br>
+                  
+                  <label for="job_description" class="label-style">Job Description:</label>
+                  <input type="file" id="job_description" name="job_description" class="custom-file-upload"><br><br>
+
+
+                </div>
+                
+<!-- submit button -->
+                <input type="submit" class="upload-button-2" id="showToastBtn" style="margin: 0 auto; margin-bottom:1rem ">
+                
+               
+
+            </form>
+        </div>
+
+
+       
+    </div>
+    
+    <script>
+      // toaste-message-function
+   
+        document.addEventListener("DOMContentLoaded", function() {
+            // Handle 'Next' button click on the first overlay
+            document.getElementById('nextButton').addEventListener('click', function(event) {
+                event.preventDefault()
+                const nameInput = document.getElementById('nameInput').value;
+                if (nameInput.trim() !== '') {
+                    localStorage.setItem('userName', nameInput);
+                    document.getElementById('nameOverlay').style.display = 'none';
+                    document.getElementById('uploadOverlay').style.display = 'flex';
+                    
+                    // Text-to-speech functionality
+                    const welcomeText = "Please Upload your Resume and Job Description";
+                    const speech = new SpeechSynthesisUtterance(welcomeText);
+                    window.speechSynthesis.speak(speech);
+                } else {
+                    alert('Please enter your name.');
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('uploadForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                window.location.href = 'answer.html';
+            });
+
+            // Text-to-Speech functionality on page load
+            const welcomeMessage = "Hi, welcome to AI Interview! What's your name?";
+            const speech = new SpeechSynthesisUtterance(welcomeMessage);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        });
+
+    </script>
+</body>
+</html>
